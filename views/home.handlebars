@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="display-3 text-center pt-3 pb-5">TO-DO</div>
+  <div class="card mb-3">
+    <div class="card-header display-4">Add Activity +</div>
+    <div class="card-body">
+      <form action="create-activity" method="post">
+        <div class="form-group">
+          <label>Title:</label>
+          <input type="text" class="form-control" name="title">
+        </div>
+        <div class="form-group">
+          <label>Description:</label>
+          <input type="text" class="form-control" name="description">
+        </div>
+        <div class="btn-group float-right">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn btn-danger">clear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  {{#each activites}}
+  <div class="card mb-3">
+    <div class="card-header"><strong>{{this.title}}</strong></div>
+    <div class="card-body">
+      <p>{{this.description}}</p>
+      <p class="display-4 {{findColor this.status}}">{{this.status}}</p>
+      <div class="btn-group float-right">
+        <a href="update-activity?id={{this._id}}&status=pending" class="btn btn-warning">Pending</a>
+        <a href="update-activity?id={{this._id}}&status=snooze" class="btn btn-primary">Snooze</a>
+        <a href="update-activity?id={{this._id}}&status=done" class="btn btn-success">Done</a>
+      </div>
+    </div>
+    <div class="card-footer">
+      <a href="delete-activity?id={{this._id}}" class="btn btn-danger float-right">Delete</a>
+    </div>
+  </div>
+  {{/each}}
+</div>
